@@ -39,8 +39,3 @@ is_float_integer_correct = not bool(55.0 % 1)
 is_true = bool('0')
 is_true2 = bool('')
 is_true3 = bool(0)
-
-
-
-
-pass
