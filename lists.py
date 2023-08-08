@@ -59,9 +59,4 @@ for letter in my_sentence:
     if letter.islower():
         print(letter.upper())
 
-
-
-
-
-
 pass
