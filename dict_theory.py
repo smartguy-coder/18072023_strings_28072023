@@ -28,7 +28,7 @@ set1 = {1, 2, 3, 'hyuf'}
 dict_creation_2 = dict()
 dict_creation_3 = dict(city='Odesa', village='Myrne')
 dict_creation_4 = {}
-dict_creation_5 = dict.fromkeys(set1)  # другий аргумент буде переданий як значення для всіх
+dict_creation_5 = dict.fromkeys(set1, None)  # другий аргумент буде переданий як значення для всіх
 # ключів новоствореного словника, інакше None
 print('from keys', dict_creation_5)
 
