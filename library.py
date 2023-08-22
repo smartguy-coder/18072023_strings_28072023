@@ -14,5 +14,11 @@ def convert_meters_to_inches(meters_co_convert: int | float) -> float:
     """
     result = constants.CONSTANTS_METRIC['INCHES_IN_METER'] * meters_co_convert
     # result = CONSTANTS_VALUES()['INCHES_IN_METER'] * meters_co_convert
-    abs_result = abs(result)
+    abs_result = abs(round(result, 2))
     return abs_result
+
+
+def calculate_square_area(square_side: int | float) -> float | int:
+    # result = square_side ** 2
+    result = square_side * square_side
+    return result
