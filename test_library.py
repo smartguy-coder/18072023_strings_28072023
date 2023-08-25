@@ -1,4 +1,8 @@
-from library import convert_meters_to_inches, calculate_square_area
+from random import randint
+
+import pytest
+
+from library import convert_meters_to_inches, calculate_square_area, check_air_weather_condition, is_cold
 
 
 def test_meter_to_inches_converter_int():
@@ -23,3 +27,28 @@ def test_square_area():
     actual_result = calculate_square_area(side)
     assert actual_result == expected_result
     assert type(actual_result) in {int, float}
+
+
+weather = [
+    (randint(-240, 4), 'холодно'),
+    (4.9999999999999, 'холодно'),
+    (randint(5, 25), 'тепло'),
+    (randint(26, 1000), 'жарко'),
+]
+
+
+@pytest.mark.parametrize('temp, expected', weather)
+def test_check_air_weather_condition_cold(temp, expected):
+    actual = check_air_weather_condition(temp)
+    assert actual == expected
+
+
+cold = [
+    (randint(-240, 4), True),
+    (randint(5, 1000), False),
+]
+
+
+@pytest.mark.parametrize('temp, expected', cold)
+def test_is_cold(temp, expected):
+    assert is_cold(temp) is expected
