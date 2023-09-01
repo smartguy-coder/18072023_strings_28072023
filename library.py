@@ -4,6 +4,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
+from email import encoders
 
 import config
 
@@ -38,6 +39,7 @@ def send_email(
             file.set_payload(open(attachment, 'rb').read())
             file.add_header('Content-Description', attachment)
             file.add_header('Content-Description', f'attachment; filename={attachment}; size={filesize}')
+            encoders.encode_base64(file)
 
 
 
