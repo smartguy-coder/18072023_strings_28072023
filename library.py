@@ -1,3 +1,4 @@
+import os
 import smtplib
 
 from email.mime.multipart import MIMEMultipart
@@ -7,6 +8,7 @@ import config
 
 
 def send_email(
+    *,
     recipients: list[str],
     mail_body: str,
     mail_subject: str,
@@ -23,6 +25,12 @@ def send_email(
     msg['Reply-To'] = USER
     msg['Return-Path'] = USER
     msg['X-Mailer'] = 'decorator'
+
+    if attachment:
+        file_exists = os.path.exists(attachment)
+        if not file_exists:
+            print(f"file {attachment}")
+
 
     text_to_send = MIMEText(mail_body, 'plain')
     msg.attach(text_to_send)
