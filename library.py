@@ -40,8 +40,7 @@ def send_email(
             file.add_header('Content-Description', attachment)
             file.add_header('Content-Description', f'attachment; filename={attachment}; size={filesize}')
             encoders.encode_base64(file)
-
-
+            msg.attach(file)
 
     text_to_send = MIMEText(mail_body, 'plain')
     msg.attach(text_to_send)
