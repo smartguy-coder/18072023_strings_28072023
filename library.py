@@ -3,6 +3,7 @@ import smtplib
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
 
 import config
 
@@ -29,7 +30,11 @@ def send_email(
     if attachment:
         file_exists = os.path.exists(attachment)
         if not file_exists:
-            print(f"file {attachment}")
+            print(f"file {attachment} does not exist")
+        else:
+            basename = os.path.basename(attachment)
+            filesize = os.path.getsize(attachment)
+            file =
 
 
     text_to_send = MIMEText(mail_body, 'plain')
