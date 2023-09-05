@@ -1,0 +1,15 @@
+function doGet(req) {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = doc.getSheetByName('sheet1');
+  var values = sheet.getDataRange().getValues();
+
+  var output = [];
+  for(var i = 1; i<values.length; i++){
+    var row = {};
+    row['code'] = values[i][0];
+    row['quantity'] = values[i][1];
+    row['note'] = values[i][2];
+    output.push(row);
+  }
+  return ContentService.createTextOutput(JSON.stringify({data: output})).setMimeType(ContentService.MimeType.JSON);
+}
