@@ -1,5 +1,8 @@
+import sys
+
 import requests
 from pprint import pprint
+import inspect
 
 url = 'https://script.google.com/macros/s/AKfycbzZ7ofoaQy2pbc7u-IjT71TxscX2GUd5iv7H4EVbXIR6ml32HsBVcG5AXTRPk1rleqGXw/exec'
 
@@ -23,18 +26,33 @@ money = 0
 # print(money)
 # print(names)
 
-money = [person['money'] for person in data_dict['trip']]
-money = sum([person['money'] for person in data_dict['trip'] if person['money']])
-print(money)
-
+# money = [person['money'] for person in data_dict['trip']]
+# money = sum([person['money'] for person in data_dict['trip'] if person['money']])
+# print(money)
+#
 names = [person["name"] for person in data_dict['trip']]
 print(names)
+print(sys.getsizeof(names))
 
-names = {person["name"] for person in data_dict['trip']}
+names = (person["name"] for person in data_dict['trip'])
 print(names)
+print(sys.getsizeof(names))
 
-names = {person["name"]: person["money"] for person in data_dict['trip']}
-print(names)
+print(next(names))
+print(next(names))
+print(next(names))
 
-names = {person["name"] for person in data_dict['trip']}
-print(names)
+print(9999999999999999999999)
+
+print(next(names))
+print(next(names))
+
+#
+# names = {person["name"] for person in data_dict['trip']}
+# print(names)
+#
+# names = {person["name"]: person["money"] for person in data_dict['trip']}
+# print(names)
+
+
+
