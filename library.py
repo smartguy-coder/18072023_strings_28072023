@@ -1,5 +1,6 @@
 import os
 import smtplib
+import imaplib
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -51,11 +52,27 @@ def send_email(
     mail.quit()
 
 
-
-
-
-
-
-
 def check_email():
-    pass
+    PASSWORD = config.TOKEN_API
+    USERNAME = config.USER
+    SERVER = config.IMAP_SERVER
+    imap = imaplib.IMAP4_SSL(SERVER)
+    logged_in = imap.login(USERNAME, PASSWORD)
+    # print(logged_in)
+    # print(logged_in[1][-1].decode())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
