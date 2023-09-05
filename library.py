@@ -60,6 +60,10 @@ def check_email():
     logged_in = imap.login(USERNAME, PASSWORD)
     # print(logged_in)
     # print(logged_in[1][-1].decode())
+    # print(imap.select('INBOX'))
+    print(imap.search(None, 'UNSEEN'))
+    # print(imap.uid('search', 'UNSEEN', 'ALL'))
+
 
 
 
