@@ -1,9 +1,12 @@
 def sanitize_string(*, string_value: str, exclude: str = 'nNmM', max_result_length: int = 100) -> list[str]:
+    if max_result_length < 1:
+        raise ValueError('max_result_length cannot be less than 1')
+
     result_list = []
-    exclude = set(exclude)
     if not string_value:
         return result_list
 
+    exclude = set(exclude)
     string_value_length = len(string_value)
     position = 0
 
