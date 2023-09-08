@@ -1,26 +1,6 @@
-"""
-Написати функцію,
-котра приймає стрічку,
-функція повертає даний список,
-
-і за допомогою циклу while
-
-
-проходиться по даній стрічці,
- добавляючи в список (пустий список створюється в середині функції) всі букви, окрім m та  n
- (всі регістри).
-
- проте кількість елементів в
-ньому має бути не більше 100 одиниць (можете використати len, або створити лічильник
- добавлених букв, або зріз списку (зріз не є найоптимальнішим вибором, оскільки його
-  можна застосувати лише після генерації списку, а якщо стрічка буде  мільйон символів,
-   то ми в пусту використаємо потужності компютера)
-написати тести для даної функції
-"""
-
-
-def foo(string_value: str, exclude: str = 'nNmM') -> list:
+def sanitize_string(*, string_value: str, exclude: str = 'nNmM', max_result_length: int = 100) -> list[str]:
     result_list = []
+    exclude = set(exclude)
     if not string_value:
         return result_list
 
@@ -28,24 +8,13 @@ def foo(string_value: str, exclude: str = 'nNmM') -> list:
     position = 0
 
     while position < string_value_length:
-        print(string_value[position])
         if string_value[position] not in exclude:
             result_list.append(string_value[position])
-        print(result_list)
+            if len(result_list) == max_result_length:
+                break
         position += 1
 
     return result_list
-
-foo('mmmsdg')
-
-
-
-
-
-
-
-
-
 
 
 """
