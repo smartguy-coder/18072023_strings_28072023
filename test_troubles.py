@@ -43,8 +43,8 @@ def test_sanitize_unsuccess_string():
 
 
 def test_sanitize_overload_string():
-    base_string = '1' * 500
-    exclude = 'nnmmjhfhgf'
+    base_string = '11111111111111111111111111111111111111111111111111111111'
+    exclude = ['2', 'n']
     max_len = 4
     expected_result = ['1'] * 4
     actual_result = sanitize_string(
