@@ -42,7 +42,7 @@ keywords аргументи (типу speed=3)
 """
 
 
-def foo(*, seconds: int, speed_meters_per_seconds: int | float, car_weight: int) -> str:
+def humanize_car_trip_info(*, seconds: int, speed_meters_per_seconds: int | float, car_weight: int) -> str:
     MIN_ALLOWED_VALUE = 0
     if seconds < MIN_ALLOWED_VALUE:
         raise ValueError(f'seconds value cannot be less than {MIN_ALLOWED_VALUE}')
