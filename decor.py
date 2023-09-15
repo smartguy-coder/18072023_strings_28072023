@@ -83,22 +83,25 @@ def decorate_as_float(func):
     return wrapper
 
 
-def auth(func):
-    """allow to proceed only for admins"""
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+def auth(with_login: bool = False):
+    def auth_provider(func):
+        """allow to proceed only for admins"""
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            name = input('Enter your name: ')
+            password = input('Enter your password: ')
+            if name == 'admin' and password == '1234':
+                result = func(*args, **kwargs)
+                return result
+            if with_login:
+                print(f'User {name} tried to access to the function {func.__name__}')
+            print('Access not allowed')
 
-        name = input('Enter your name: ')
-        password = input('Enter your password: ')
-        if name == 'admin' and password == '1234':
-            result = func(*args, **kwargs)
-            return result
-        print('Access not allowed')
-
-    return wrapper
+        return wrapper
+    return auth_provider
 
 
-@auth
+@auth(with_login=False)
 @decorate_as_float
 def mul_two_args(value1: int, value2: int) -> int:
     return value1 * value2
