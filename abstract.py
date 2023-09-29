@@ -54,14 +54,25 @@ class AbcDB(ABC):
 
 
 class Mongo(AbcDB):
-    TOKEN = 'dkjhgkjdfhdjkgb'
+    TOKEN = 'data_mongo.txt'
+
+    def get_data(self, data: dict):
+        with open(self.TOKEN, 'r', encoding='utf-8') as db:
+            for line in db.readlines():
+                if str(data['name']) in line:
+                    return line
+
+    def save_data(self, data: dict):
+        with open(self.TOKEN, 'a', encoding='utf-8') as db:
+            db.write(str(data) + '\n')
 
 
-class Postgresql(AbcDB):
-    TOKEN = 'dkjhgkjdfhdjkgb'
+class GraphQL(AbcDB):
+    TOKEN = 'dkjh999999999gkjdfhdjkgb'
     URL = 'kjdfhgjkdfhgkf'
 
 
 entrypoint = Mongo()
 
-entrypoint.get_data({'name': 555})
+entrypoint.save_data({'name': 557})
+print(entrypoint.get_data({'name': 557}))
