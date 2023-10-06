@@ -33,3 +33,8 @@ vacuum_cleaners_coll = db.vacuum_cleaners
 # mops_coll.insert_many(mops)
 
 # GET DATA *************************************************
+# first
+# result = mops_coll.find_one()
+# result = mops_coll.find_one({'_id': 10})  # by field
+# result = mops_coll.find_one({'price': 18})  # by field
+# print(result)
