@@ -11,11 +11,15 @@ db = client.testDB
 mops_coll = db.mops
 vacuum_cleaners_coll = db.vacuum_cleaners
 
-mops_coll.insert_one(
-      {'title': 'Super mop', 'price': 15}
-)
+# mops_coll.insert_one(
+#       {'title': 'Super mop', 'price': 15}
+# )
+#
+# vacuum_cleaners_coll.insert_one(
+#       {'title': 'vacuum cleaner', 'price': 150,
+#        'power': 2000}
+# )
 
-vacuum_cleaners_coll.insert_one(
-      {'title': 'vacuum cleaner', 'price': 150,
-       'power': 2000}
-)
+# mops_coll.insert_one(
+#       {'_id': 2, 'title': 'Super mop', 'price': 15}
+# )
