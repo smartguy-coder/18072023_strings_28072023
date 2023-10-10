@@ -1,4 +1,5 @@
 import pymongo
+from bson import Decimal128
 
 from config import USER, PASSWORD
 
@@ -49,13 +50,50 @@ vacuum_cleaners_coll = db.vacuum_cleaners
 # query = {'price': 22}
 # query = {'price': {'$gt': 15}}
 # query = {'title': {'$regex': 'Su*'}}
-query = {'title': {'$regex': 'Su*'}}
+# query = {'title': {'$regex': r'er22\b'}}
+# query = {'title': {'$regex': r'er\b'}, 'price': {'$gte': 15}}
+# query = {'title': {'$regex': r'er\b'}, 'price': {'$lte': 15}}
 
 # result = mops_coll.find(query)
 # result = mops_coll.find(query).limit(2)
 # result = mops_coll.find(query).sort('price').limit(2)
-result = mops_coll.find(query).sort('price', -1).limit(2)
-for doc in result:
-      print(doc)
+# result = mops_coll.find(query).sort('price', -1).limit(25)
+# for doc in result:
+#       print(doc)
+
+# UPDATE
+#  use $set
+# current = {'title': 'Super2 mop'}
+# new_data = {'$set': {'brand': 'Samsung2'}}
+# data = mops_coll.update_one(current, new_data)
+# print(data.raw_result)
+
+# current = {'title': 'Super mop3'}
+# new_data = {'$set': {'battery_capacity': 10000}}
+# data = mops_coll.update_many(current, new_data)
+# print(data.raw_result)
+
+# current = {}
+# new_data = {'$set': {'warranty': 3}}
+# data = mops_coll.update_many(current, new_data)
+# print(data.raw_result)
+
+
+# multiplication
+query = {}
+# operation = {'$mul': {'price': 1.1}}  # bad idea
+operation = {'$mul': {'price': 1.1}}
+data = mops_coll.update_many(query, operation)
+print(data.raw_result)
+
+
+
+
+
+
+
+
+
+
 
 
