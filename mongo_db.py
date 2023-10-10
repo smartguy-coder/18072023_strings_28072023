@@ -80,20 +80,35 @@ vacuum_cleaners_coll = db.vacuum_cleaners
 
 
 # multiplication
-query = {}
-# operation = {'$mul': {'price': 1.1}}  # bad idea
-operation = {'$mul': {'price': 1.1}}
-data = mops_coll.update_many(query, operation)
-print(data.raw_result)
+# query = {}
+# # operation = {'$mul': {'price': 1.1}}  # bad idea
+# operation = {'$mul': {'price': Decimal128(str(2))}}
+# data = mops_coll.update_many(query, operation)
+# print(data.raw_result)
+
+# increase
+# query = {'price': {'$lt': 350}}
+# operation = {'$inc': {'warranty': -1, 'price': 300}}
+# data = mops_coll.update_many(query, operation)
+# print(data.raw_result)
+
+# DELETE field
+# query = {'price': {'$lt': 370}}
+# operation = {'$unset': {'warranty': 1}}
+# data = mops_coll.update_many(query, operation)
+# print(data.raw_result)
+
+# DELETE document
+# query = {'price': {'$lt': 370}}
+# data = mops_coll.delete_one(query)
+# print(data.raw_result)
+
+# query = {}
+# data = mops_coll.delete_many(query)
+# print(data.deleted_count)
 
 
-
-
-
-
-
-
-
-
-
+# mops_coll.drop()
+# vacuum_cleaners_coll.drop()
+client.drop_database('testDB')
 
