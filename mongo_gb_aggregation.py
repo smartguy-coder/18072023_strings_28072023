@@ -56,19 +56,40 @@ collection_products = db.products
 # response = collection_products.aggregate(query)
 # print(list(response))
 
-query = [{'$match': {'$and': [
-      {'contain_gluten': False},
-      {'price': {'$gte': 50}},
-]}}]
+# query = [{'$match': {'$and': [  # $or
+#       {'contain_gluten': False},
+#       {'price': {'$gte': 50}},
+# ]}}]
+# response = collection_products.aggregate(query)
+# print(list(response))
+
+
+# $group stage
+# query = [
+#       {
+#             '$group': {'_id': '$contain_gluten'}
+#       }
+# ]
+# response = collection_products.aggregate(query)
+# print(list(response))
+
+# query = [
+#       {
+#             '$group': {'_id': {'gluten': '$contain_gluten', 'price': '$price'}}
+#       }
+# ]
+# response = collection_products.aggregate(query)
+# print(list(response))
+
+
+# $sum stage
+query = [
+      {
+            '$group': {'_id': {'gluten': '$contain_gluten', 'price': '$price'}}
+      }
+]
 response = collection_products.aggregate(query)
 print(list(response))
-
-
-
-
-
-
-
 
 
 
