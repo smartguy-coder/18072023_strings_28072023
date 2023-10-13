@@ -8,38 +8,70 @@ url = f'mongodb+srv://{USER}:{PASSWORD}' \
 client = pymongo.MongoClient(url)
 
 db = client.testDB
-
 collection_products = db.products
 
-products = [
-    {
-        'title': 'bread',
-        'price': 45,
-        'remains': 10,
-        'comment': 'no sugar',
-        'contain_gluten': True,
-    },
-    {
-        'title': 'soft drink',
-        'price': 25,
-        'remains': 100,
-        'comment': 'no sugar',
-        'contain_gluten': False,
-    },
-    {
-        'title': 'milk',
-        'price': 15,
-        'remains': 1,
-        'comment': 'no sugar',
-        'contain_gluten': True,
-    },
-    {
-        'title': 'vinegar',
-        'price': 25,
-        'remains': 10,
-        'comment': 'no sugar',
-        'contain_gluten': False,
-    },
-]
+# products = [
+#     {
+#         'title': 'bread2',
+#         'price': 452,
+#         'remains': 102,
+#         'comment': 'no sugar',
+#         'contain_gluten': True,
+#     },
+#     {
+#         'title': 'soft drink2',
+#         'price': 252,
+#         'remains': 1002,
+#         'comment': 'no sugar',
+#         'contain_gluten': False,
+#     },
+#     {
+#         'title': 'milk2',
+#         'price': 152,
+#         'remains': 12,
+#         'comment': 'no sugar',
+#         'contain_gluten': True,
+#     },
+#     {
+#         'title': 'vinegar2',
+#         'price': 252,
+#         'remains': 102,
+#         'comment': 'no sugar',
+#         'contain_gluten': False,
+#     },
+# ]
+#
+# collection_products.insert_many(products)
 
-collection_products.insert_many(products)
+# analog find
+# query = []
+# response = collection_products.aggregate(query)
+# for doc in response:
+#     print(doc)
+# print(list(response))
+
+
+# $match stage
+# query = [{'$match': {'contain_gluten': False}}]
+# response = collection_products.aggregate(query)
+# print(list(response))
+
+query = [{'$match': {'$and': [
+      {'contain_gluten': False},
+      {'price': {'$gte': 50}},
+]}}]
+response = collection_products.aggregate(query)
+print(list(response))
+
+
+
+
+
+
+
+
+
+
+
+
+
