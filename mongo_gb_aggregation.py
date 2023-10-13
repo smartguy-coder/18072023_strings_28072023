@@ -1,5 +1,6 @@
 import pymongo
 from pprint import pprint
+from datetime import datetime, timedelta
 
 from config import USER, PASSWORD
 
@@ -13,18 +14,20 @@ collection_products = db.products
 
 # products = [
 #     {
-#         'title': 'bread2',
+#         'title': 'bread2 time',
 #         'price': 452,
-#         'remains': 102,
+#         'remains': 1002,
 #         'comment': 'no sugar',
 #         'contain_gluten': True,
+#       'data': datetime.now() - timedelta(hours=5)
 #     },
 #     {
-#         'title': 'soft drink2',
+#         'title': 'soft drink2 time',
 #         'price': 252,
 #         'remains': 1002,
 #         'comment': 'no sugar',
 #         'contain_gluten': False,
+#           'data': datetime.now() + timedelta(hours=5)
 #     },
 #     {
 #         'title': 'milk2',
@@ -135,6 +138,7 @@ query = [
 
     {'$project': {
         'contain_gluten': 1,
+        'data': 1,
         '_id': 0,
         'this_product_cost': {'$multiply': ['$price', '$remains']}}
     },
@@ -145,7 +149,7 @@ query = [
             'total': {'$sum': '$this_product_cost'}
         }
     },
-      {'$match': {'total': {'$gt': 500}}},
+    {'$match': {'total': {'$gt': 500}}},
 ]
 
 response = collection_products.aggregate(query)
