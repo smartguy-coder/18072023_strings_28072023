@@ -114,27 +114,39 @@ collection_products = db.products
 # pprint(list(response))
 
 
+# $project stage
+# query = [
+#       {
+#             '$project': {
+#                   '_id': 0,
+#                   'contain_gluten': 1,
+#                   'item_description': {'$concat': ['$title', ' - ', '$comment']},
+#             }
+#       }
+# ]
+# response = collection_products.aggregate(query)
+# pprint(list(response))
+
+
+#  COOL AGGREGATION
+
 query = [
-      {
-            '$group': {
-                  '_id': '$contain_gluten',
-                  'count_remains': {'$sum': '$remains'},
-                  'naming_counter': {'$sum': 1}
-            }
-      }
+    {'$match': {'price': {'$gt': 12}}},
+
+    {'$project': {
+        'contain_gluten': 1,
+        '_id': 0,
+        'this_product_cost': {'$multiply': ['$price', '$remains']}}
+    },
+
+    {
+        '$group': {
+            '_id': '$contain_gluten',
+            'total': {'$sum': '$this_product_cost'}
+        }
+    },
+      {'$match': {'total': {'$gt': 500}}},
 ]
+
 response = collection_products.aggregate(query)
 pprint(list(response))
-
-
-
-
-
-
-
-
-
-
-
-
-
