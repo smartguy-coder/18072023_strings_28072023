@@ -1,4 +1,5 @@
 import pymongo
+from pprint import pprint
 
 from config import USER, PASSWORD
 
@@ -83,13 +84,54 @@ collection_products = db.products
 
 
 # $sum stage
+# query = [
+#       {
+#             '$group': {'_id': '$contain_gluten', 'count': {'$sum': '$remains'}}
+#       }
+# ]
+# response = collection_products.aggregate(query)
+# print(list(response))
+
+# query = [
+#       {
+#             '$group': {'_id': '$contain_gluten', 'count': {'$sum': '$remains'}}
+#       }
+# ]
+# response = collection_products.aggregate(query)
+# print(list(response))
+
+
+# query = [
+#       {
+#             '$group': {
+#                   '_id': '$contain_gluten',
+#                   'count_remains': {'$sum': '$remains'},
+#                   'naming_counter': {'$sum': 1}
+#             }
+#       }
+# ]
+# response = collection_products.aggregate(query)
+# pprint(list(response))
+
+
 query = [
       {
-            '$group': {'_id': {'gluten': '$contain_gluten', 'price': '$price'}}
+            '$group': {
+                  '_id': '$contain_gluten',
+                  'count_remains': {'$sum': '$remains'},
+                  'naming_counter': {'$sum': 1}
+            }
       }
 ]
 response = collection_products.aggregate(query)
-print(list(response))
+pprint(list(response))
+
+
+
+
+
+
+
 
 
 
