@@ -1,4 +1,14 @@
 import sqlite3
+import hashlib
+
+def encript_password(value: str) -> str:
+    hashed_value = hashlib.md5(value.encode()).hexdigest()
+    print(hashed_value)
+
+
+encript_password('5')
+
+
 
 
 with sqlite3.connect('new_db.sqlite3') as connection:
@@ -34,11 +44,11 @@ with sqlite3.connect('new_db.sqlite3') as connection:
 
     name = 'Max'
     password = '123456'
-    login = 'qwerty'
+    login = 'qwerty2'
     values = [name, login, password]
 
     query = """
         INSERT INTO user(name, login, password)
         VALUES (?, ?, ?)
     """
-    cursor.execute(query, values)
+    # cursor.execute(query, values)
