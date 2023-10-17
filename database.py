@@ -8,9 +8,6 @@ def encript_password(value: str) -> str:
     return hashed_value
 
 
-
-
-
 with sqlite3.connect('new_db.sqlite3') as connection:
     cursor = connection.cursor()
     connection.create_function('encode', 1, encript_password)
