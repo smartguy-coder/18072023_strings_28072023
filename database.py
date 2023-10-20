@@ -146,19 +146,29 @@ with sqlite3.connect('new_db.sqlite3') as connection:
     # ADD COLUMN
     # query = """
     #     ALTER TABLE customers
-    #     ADD COLUMN balance REAL
+    #     ADD COLUMN conflict BOOLEAN DEFAULT TRUE
     # """
     # cursor.execute(query)
 
-    # query = """
-    #     UPDATE customers
-    #     SET
-    #         balance = 0
-    #     WHERE
-    #         balance IS NULL
-    # """
+    query = """
+        UPDATE customers
+        SET
+            balance = 10
+        WHERE
+            balance = 5
+    """
     # cursor.execute(query)
 
+    print(connection.total_changes)
+    # 1/0
+    query = """
+        UPDATE customers
+        SET
+            balance = 11
+        WHERE
+            balance = 10
+    """
+    # cursor.execute(query)
     # DELETE
     # query = """
     #     DELETE FROM customers
@@ -169,6 +179,38 @@ with sqlite3.connect('new_db.sqlite3') as connection:
     # cursor.execute(query)
 
     sqlite_data = 'SELECT sqlite_version()'
-    cursor
+    cursor.execute(sqlite_data)
+    record = cursor.fetchone()
+    print(record)
 
+    print(connection.total_changes)
+
+
+con2 = sqlite3.connect('new_db.sqlite3')
+try:
+    query = """
+        UPDATE customers
+        SET
+            balance = 15
+        WHERE
+            balance = 10
+    """
+    con2.execute(query)
+
+    print(con2.total_changes)
+    1/0
+    query = """
+        UPDATE customers
+        SET
+            balance = 11
+        WHERE
+            balance = 15
+    """
+    con2.execute(query)
+    con2.commit()
+except:
+    con2.rollback()
+    pass
+finally:
+    con2.close()
 
