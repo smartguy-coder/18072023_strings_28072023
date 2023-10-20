@@ -40,13 +40,80 @@ with sqlite3.connect('new_db.sqlite3') as connection:
     # """
     # cursor.executescript(query)
 
-    name = 'Max'
-    password = '123456'
-    login = 'qwerty3'
-    values = [name, login, password]
 
+    # CREATE
+    # name = 'Max'
+    # password = '123456'
+    # login = 'qwerty3'
+    # values = [name, login, password]
+    #
+    # query = """
+    #     INSERT INTO user(name, login, password)
+    #     VALUES (?, ?, encode(?))
+    # """
+    # cursor.execute(query, values)
+
+    # insert many
+    # values = (
+    #     ('1', '2234545', '3'),
+    #     ('1', '22rtytry34545', '3'),
+    #     ('1', '2234fgh545', '3'),
+    # )
+    #
+    # query = """
+    #     INSERT INTO user(name, login, password)
+    #     VALUES (?, ?, encode(?))
+    # """
+    # cursor.executemany(query, values)
+    #     #####################################
+
+    # READ
+    # query = """
+    #     SELECT name, address
+    #     FROM user
+    #     WHERE id >= 3
+    # """
+    # query = """
+    #     SELECT name, address
+    #     FROM user
+    #     WHERE id > 3 AND address = 'Київ'
+    # """
+    # query = """
+    #     SELECT name, address
+    #     FROM user
+    #     WHERE id > 3 AND address LIKE '%Київ%'
+    # """
+    # query = """
+    #     SELECT name, address
+    #     FROM user
+    #     WHERE id BETWEEN 3 and 6
+    # """
     query = """
-        INSERT INTO user(name, login, password)
-        VALUES (?, ?, encode(?))
+        SELECT name, address
+        FROM user
+        WHERE id = 3 OR name = '1'
     """
-    cursor.execute(query, values)
+
+    result = cursor.execute(query)
+    # print(result.fetchmany(size=3))
+    print(result.fetchall())
+    # print(result.fetchone())
+    # print(result.__next__())
+    # print(result.__next__())
+    # print(result.__next__())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
