@@ -88,32 +88,87 @@ with sqlite3.connect('new_db.sqlite3') as connection:
     #     FROM user
     #     WHERE id BETWEEN 3 and 6
     # """
-    query = """
-        SELECT name, address
-        FROM user
-        WHERE id = 3 OR name = '1'
-    """
-
-    result = cursor.execute(query)
-    # print(result.fetchmany(size=3))
-    print(result.fetchall())
+    # query = """
+    #     SELECT name, address
+    #     FROM user
+    #     WHERE id = 3 OR name LIKE '1%'
+    #     ORDER BY id DESC
+    #     LIMIT 3
+    #     OFFSET 2
+    # """
+    #
+    # result = cursor.execute(query)
+    # # print(result.fetchmany(size=3))
+    # print(result.fetchall())
     # print(result.fetchone())
     # print(result.__next__())
     # print(result.__next__())
     # print(result.__next__())
 
+    # UPDATE
+    # query = """
+    #     UPDATE user
+    #     SET
+    #         address = 'Odesa'
+    #     WHERE
+    #         id > 4
+    # """
+    # query = """
+    #     UPDATE customers
+    #     SET
+    #         email = LOWER('mr_' || name || '_' || id || '@gmail.com')
+    # """
 
+    # query = """
+    #     UPDATE user
+    #     SET
+    #         password = :Pass
+    #     WHERE
+    #         id = 3
+    # """
+    #
+    # cursor.execute(query, {'Pass': 'e10adc3949ba59abbe56e057f20f883e'})
 
+    # RENAME TABLE
+    # query = """
+    #     ALTER TABLE user
+    #     RENAME TO customers
+    # """
+    # cursor.execute(query)
 
+    # # RENAME COLUMN
+    # query = """
+    #     ALTER TABLE customers
+    #     RENAME COLUMN address TO email
+    # """
+    # cursor.execute(query)
 
+    # ADD COLUMN
+    # query = """
+    #     ALTER TABLE customers
+    #     ADD COLUMN balance REAL
+    # """
+    # cursor.execute(query)
 
+    # query = """
+    #     UPDATE customers
+    #     SET
+    #         balance = 0
+    #     WHERE
+    #         balance IS NULL
+    # """
+    # cursor.execute(query)
 
+    # DELETE
+    # query = """
+    #     DELETE FROM customers
+    #     WHERE
+    #         name LIKE '1%'
+    # """
 
+    # cursor.execute(query)
 
-
-
-
-
-
+    sqlite_data = 'SELECT sqlite_version()'
+    cursor
 
 
